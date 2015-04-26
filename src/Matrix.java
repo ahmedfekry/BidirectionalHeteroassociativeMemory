@@ -27,15 +27,15 @@ public class Matrix {
 		this.matrix = new double[rows][columns];
 	}
 	
-	public Matrix addTwoMatrices(Matrix matrix1,Matrix matrix2){
+	public static Matrix addTwoMatrices(Matrix matrix1,Matrix matrix2){
 		if(matrix1.getNumOfRows() != matrix2.getNumOfRows() || matrix1.getNumOfColmn() != matrix2.getNumOfColmn()){
 			System.out.println("cann't add");		
 			return null;
 		}
 		
 		Matrix result = new Matrix(matrix1.getNumOfRows(),matrix2.getNumOfColmn());
-		for (int i = 0; i < matrix.length; i++) {
-			for (int j = 0; j < matrix[0].length; j++) {
+		for (int i = 0; i < matrix1.getNumOfRows(); i++) {
+			for (int j = 0; j < matrix2.getNumOfColmn(); j++) {
 				double x = matrix1.value(i, j) + matrix2.value(i, j);
 				result.setValue(i, j, x);
 			}
@@ -43,7 +43,7 @@ public class Matrix {
 		return result;
 	}
 	
-	public Matrix multiplyTwoMatrices(Matrix matrix1,Matrix matrix2){
+	public static Matrix multiplyTwoMatrices(Matrix matrix1,Matrix matrix2){
 		
 		if(matrix1.getNumOfColmn() != matrix2.getNumOfRows()){
 			System.out.println("cannot multiply");
@@ -62,6 +62,33 @@ public class Matrix {
 		}
 		return result;
 	}
+	
+	public void transposeMatrix(){
+		double result[][] = new double[getNumOfRows()][getNumOfColmn()];
+		for (int i = 0; i<getNumOfRows(); i++)
+			   for (int j = 0; j<getNumOfColmn(); j++)
+			     result[j][i] = matrix[i][j];
+		matrix=result;
+	}
+	public boolean equals(Matrix m){
+		for(int i = 0 ; i < getNumOfRows(); ++i){
+			for(int j = 0 ; j < getNumOfColmn(); ++j){
+				if(matrix[i][j] != m.value(i, j))
+					return false;
+			}
+		}
+		return true;
+	}
+	
+	public void Hebbsrule(){
+		for(int i = 0 ; i < matrix.length; ++i){
+			for(int j = 0 ; j < matrix[i].length; ++j){
+				if(matrix[i][j] > 0)matrix[i][j] = 1;
+				if(matrix[i][j] < 0)matrix[i][j] = -1;
+			}
+		}
+	}
+	
 	public void setValue(int i,int j,double v){
 		matrix[i][j] = v;
 	}
