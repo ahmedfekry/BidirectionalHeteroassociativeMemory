@@ -30,7 +30,7 @@ public class Main {
 			}
 			
 				Matrix results[] = memory.recallWithX(x0);
-				System.out.println("X");
+				System.out.println("X values : ");
 				Matrix m = results[0];
 				for (int i = 0; i < m.getNumOfRows(); i++) {
 					for (int j = 0; j < m.getNumOfColmn(); j++) {
@@ -38,7 +38,7 @@ public class Main {
 					}
 					System.out.println();
 				}
-				System.out.println("Y");
+				System.out.println("Y values : ");
 				m = results[1];
 				for (int i = 0; i < m.getNumOfRows(); i++) {
 					for (int j = 0; j < m.getNumOfColmn(); j++) {
